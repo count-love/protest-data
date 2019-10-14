@@ -13,7 +13,7 @@ are listed in the corresponding entry in the `events` hash.
 # Data Organization
 The dataset is a single JSON file with the following structure:
 
-```json
+```text
 {
     "tags": {
         "category": array of category tags,
