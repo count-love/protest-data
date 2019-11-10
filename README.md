@@ -1,4 +1,8 @@
-# Introduction
+# Count Love Protest Dataset
+
+[![DOI](https://zenodo.org/badge/214921446.svg)](https://zenodo.org/badge/latestdoi/214921446)
+
+## Introduction
 This is an annotated dataset of news article URLs that potentially contain reports about protest events
 in the United States between January 2017 and October 2019. These URLs were collected (1) automatically,
 via a crawler that searched local news and metro section homepages for the protest stem words “rally,”
@@ -10,7 +14,7 @@ including publishers moving content behind a paywall or deleting articles older 
 expiration. Where possible, when multiple articles report about the same protest, all article references
 are listed in the corresponding entry in the `events` hash.
 
-# Data Organization
+## Data Organization
 The dataset is a single JSON file with the following structure:
 
 ```text
@@ -47,20 +51,20 @@ The dataset is a single JSON file with the following structure:
 }
 ```
 
-## Tags
+### Tags
 The “tags” hash contains three different string arrays that enumerate all of the tags in the protest taxonomy. Category tags, such as “Civil Rights” or “Immigration,” broadly describe protest topics. Position tags, which start with “For,” “Against,” “Pro,” or “Anti,” indicate what protestors are advocating for or against. Detail tags indicate more information, such as the name of a corresponding national event (e.g., “March for Our Lives”) or a recurring detail (e.g., “Police”). While tags are not mutually exclusive, in practice some tags are semantically opposite and never appear together for the same event. All events have at least one category tag and one position tag.
 
-## Articles
+### Articles
 The `articles` array contains every article in this dataset. Each array entry is a hash that contains metainformation about an article, including its unique `article_id`, the date that the article was crawled (or published for articles prior to February 19, 2017, the date that this project started), and an `origin` field denoting whether an article was automatically found by the crawler or manually added. 
 
 Each article entry also contains an `events` array, and each element in the `events` array represents a protest event found in the article. Individual events have a unique `event_id` that matches the `event_id` field in the top level `events` array. Because this dataset also includes negative examples where the titles of articles contain protest stem words but the article itself is not about a protest, some events arrays are empty. Each event also contains a `future` boolean, where `0` indicates that the article describes a protest that happened in the past, and a `1` indicates that the article describes a protest that will happen in the future.
 
-## Events
+### Events
 The `events` array contains every protest event in this dataset. Each element is a hash that contains metainformation about a protest, such as the reasons for protest or the number of attendees at a protest. The reasons for protest are listed as a semicolon separated string and populated with values from the top level `tags` hash. The `event_primary_url` field indicates the primary source of information for an event because multiple articles can report about the same protest event. All `article_id` entries match the `article_id` field in the top level `articles` array.
 
 In the `event_attendees` field, for events that have multiple reference articles, we record the smallest, most precise attendee count with subjective judgements for source reliability. We record crowd estimates of “a dozen” as 10, “dozens” as 20, “hundreds” as 100, and so forth. We also record “several dozen” as 20, “several hundred” as 200, etc. Events with `0` attendees represent activities such as banner drops, while events without a reported count have a `null` value.
 
-# Example Data Excerpt
+## Example Data Excerpt
 The following is a simple data excerpt from the full dataset to illustrate the relationship between tags, articles, and events in the full dataset.
 
 ```json
