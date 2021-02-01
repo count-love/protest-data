@@ -4,7 +4,7 @@
 
 ## Introduction
 This is an annotated dataset of news article URLs that potentially contain reports about protest events
-in the United States between January 2017 and January 2021. These URLs were collected (1) automatically,
+in the United States between January 20, 2017 and January 31, 2021. These URLs were collected (1) automatically,
 via a crawler that searched local news and metro section homepages for the protest stem words “rally,”
 “march,” “protest,” or “demonstration;” and (2) manually, via web searches for known missing reports
 (such as missing news articles about planned protests as part of a national march).
